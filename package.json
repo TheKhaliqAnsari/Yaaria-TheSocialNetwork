@@ -1,0 +1,25 @@
+{
+  "name": "yaaria",
+  "version": "1.0.0",
+  "description": "A social media app for college and school friends. which helps you to connect and share your beautifull memories.",
+  "main": "App.js",
+  "scripts": {
+    "start": "nodemon.cmd App.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Social",
+    "Media",
+    "Social",
+    "Friends",
+    "College",
+    "yaariya"
+  ],
+  "author": "Khaliq Ansari",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7"
+  }
+}
