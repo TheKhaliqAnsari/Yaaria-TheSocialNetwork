@@ -5,6 +5,11 @@ const port = 8888;
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+//use for session cookie ->
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
 
 app.use(express.urlencoded());
 
@@ -19,13 +24,39 @@ app.use(expressLayouts);
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
-// Use express routers ->
-app.use('/', require('./routes')); 
+
 
 // set up the ejs view engine ->
 app.set('view engine', 'ejs');
 app.set('views','./views');
 
+// mongo store is used to store session cookie in db
+app.use(session({
+    name: 'Yaaria',
+    //TODO change the secret before to deployment in production->
+    secret:'kingsman',
+    saveUninitialized: false,
+    resave: false,
+    cookie:{
+        maxAge:(1000*60*100)
+    },
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/yaaria_development',
+        autoRemove: "disabled"
+    },
+    function(err){
+        console.log(err || 'Connect-mongo db setup ok');
+    }
+    )
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
+// Use express routers ->
+app.use('/', require('./routes')); 
 
 // Starting server and listening to the port ->
 app.listen(port, (err) => {

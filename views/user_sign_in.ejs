@@ -3,14 +3,14 @@
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-			<form action="/user/create-session" method="post" class="login">
+			<form action="/users/create-session" method="post" class="login">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="email" class="login__input" placeholder="Email" required>
+					<input type="email" name="email" class="login__input" placeholder="Email" required>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" required>
+					<input type="password" name="password" class="login__input" placeholder="Password" required>
 				</div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
