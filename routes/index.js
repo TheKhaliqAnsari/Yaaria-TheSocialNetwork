@@ -8,6 +8,10 @@ router.get('/', homeController.home);
 //Users Controller ->
 router.use('/users', require('./users'));
 
+//Posts Controller ->
+router.use('/posts', require('./posts'));
+
+
 
 //login controller ->
 router.get('/login', )
