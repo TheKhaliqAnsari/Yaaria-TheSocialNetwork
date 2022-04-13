@@ -15,6 +15,6 @@ router.use('/posts', require('./posts'));
 router.use('/comments', require('./comments'));
 
 //login controller ->
-router.get('/login', )
+// router.get('/login', )
 
 module.exports = router; 
