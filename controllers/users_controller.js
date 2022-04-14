@@ -14,9 +14,11 @@ module.exports.profile = (req, res) => {
 module.exports.update = (req, res) =>{
     if(req.user.id == req.params.id){
         User.findByIdAndUpdate(req.params.id,req.body, function(err, user){
+            req.flash('success', 'Updated!');
             return res.redirect('back');
         });
     }else{
+        req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unautorized');
     }
 }
@@ -49,17 +51,19 @@ module.exports.signIn = (req, res) => {
 // get the sign up data ->
 module.exports.create = (req, res) => {
     if(req.body.password != req.body.confirm_password){
+        req.flash('error', 'Passwords do not match');
         return res.redirect('back');
       }
       User.findOne({email : req.body.email}, (err, user) => {
-          if(err){console.log('error in finding user in signing up'); return}
+        if(err){req.flash('error', err); return}
 
           if(!user){
               User.create(req.body, (err, user) => {
-                  if(err){console.log('error in creating user while signing up'); return}
+                if(err){req.flash('error', err); return}
                   return res.redirect('/users/sign-in');
               })
           }else{
+            req.flash('success', 'You have signed up, login to continue!');
               return res.redirect('back');
           }
       });
