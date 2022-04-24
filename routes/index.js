@@ -16,7 +16,7 @@ router.use('/posts', require('./posts'));
 router.use('/comments', require('./comments'));
 
 //adding api ->
-router.use('api', require('./api'));
+router.use('/api', require('./api'));
 
 //login controller ->
 // router.get('/login', )
