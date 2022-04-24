@@ -12,6 +12,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
+
 const customMware = require('./config/middleware');
 
 app.use(sassMiddleware({
@@ -29,6 +30,8 @@ app.use(cookieParser());
 
 //For locating static files ->
 app.use(express.static('./assets'));
+// make the uploads path available to browser so we can see user avatar.
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(expressLayouts);
 //extract styles and scripts from sub pages into the layout ->
