@@ -36,9 +36,11 @@ module.exports.update = async (req, res) =>{
 
                 if(req.file){
 
-                    if(user.avatar){
-                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
-                    }
+                    //this code is for removing image if user updated new image but it giving me some error so i will wok on it letter
+
+                    // if(user.avatar){
+                    //     fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    // }
 
 
                     // this is saving the path of the uploaded file into the avatar field in the user
